@@ -34,13 +34,18 @@ class PartitaListAPIView(generics.ListAPIView):
         queryset = self.filter_queryset(self.get_queryset())
 
         tabellone = [[' ' for _ in range(7)] for _ in range(6)]  # Crea un tabellone vuoto
-
+        nome_giocatore2 = ""
+        nome_giocatore1 = ""
+        nome_vincitore = ""
         if queryset.exists():
-            giocatore1 = queryset.first().giocatore
+            partita = Partita.objects.get(id=queryset.first().partita.id)
+            nome_giocatore1 = partita.giocatore1.nome
+            nome_giocatore2 = partita.giocatore2.nome
+            nome_vincitore = partita.vincitore.nome
             for mossa in queryset:
                 if mossa.riga is not None and mossa.colonna is not None:
                     # Assicurati di adattare l'indice se le tue colonne iniziano da 1
-                    tabellone[mossa.riga][mossa.colonna - 1] = 'X' if mossa.giocatore.nome == giocatore1.nome else 'O'
+                    tabellone[mossa.riga][mossa.colonna - 1] = 'X' if mossa.giocatore.nome == nome_giocatore1 else 'O'
 
         # Converti il tabellone in ASCII
         tabellone_ascii = "\n".join(["|" + "|".join(riga) + "|" for riga in tabellone])
@@ -49,6 +54,13 @@ class PartitaListAPIView(generics.ListAPIView):
         for riga in tabellone:
             tabellone_json.append(' | '.join(riga))
 
-        return Response(tabellone_json)
+        response = {
+            nome_giocatore1: 'x',
+            nome_giocatore2: 'O',
+            'vincitore': nome_vincitore,
+            'tabellone': tabellone_json
+        }
+
+        return Response(response)
         # return Response(tabellone_ascii)
 
