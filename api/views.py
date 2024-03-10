@@ -44,7 +44,6 @@ class PartitaListAPIView(generics.ListAPIView):
             nome_vincitore = partita.vincitore.nome
             for mossa in queryset:
                 if mossa.riga is not None and mossa.colonna is not None:
-                    # Assicurati di adattare l'indice se le tue colonne iniziano da 1
                     tabellone[mossa.riga][mossa.colonna - 1] = 'X' if mossa.giocatore.nome == nome_giocatore1 else 'O'
 
         # Converti il tabellone in ASCII

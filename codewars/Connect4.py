@@ -33,13 +33,13 @@ class Connect4():
 
         if self.controllo_vincitore(col, row):
             # Dopo l'inserimento, controlla se il giocatore corrente ha vinto.
-            # Se sì, termina il gioco e ritorna il messaggio di vittoria.
+            # Se sì, il gioco termina e ritorna il messaggio
             self.game_over = True
             return f"Player {self.turno} wins!"
 
-        # Prepara il messaggio di turno per il giocatore corrente,
+        # Prepara il messaggio per il giocatore corrente,
         turn_message = f"Player {self.turno} has a turn"
-        # cambia il turno e poi ritorna il messaggio preparato.
+        # cambia il turno e poi ritorna il messaggio.
         self.turno = 1 if self.turno == 2 else 2
         return turn_message
 
@@ -86,12 +86,12 @@ class Connect4():
             return "Invalid column"
         return self.insert(col)
 
-    def print_board(self):
-        """
-        Stampa lo stato attuale della griglia di gioco, riga per riga
-        """
-        for row in range(self.rows):
-            print(' '.join(self.matrice[col][row] for col in range(self.cols)))
-        print()
+    # def print_board(self):
+    #     """
+    #     Stampa lo stato attuale della griglia di gioco, riga per riga
+    #     """
+    #     for row in range(self.rows):
+    #         print(' '.join(self.matrice[col][row] for col in range(self.cols)))
+    #     print()
 
 
