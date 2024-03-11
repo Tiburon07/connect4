@@ -1,9 +1,9 @@
 class Connect4():
-    """
-    Definisce il costruttore della classe con valori predefiniti per colonne (cols), righe (rows)
-    """
 
     def __init__(self, cols=7, rows=6):
+        """
+        Definisce il costruttore della classe con valori predefiniti per colonne (cols), righe (rows)
+        """
         self.cols = cols
         self.rows = rows
         # Creo una griglia di gioco vuota dove '.' rappresenta le celle vuote.
