@@ -44,8 +44,6 @@ class Connect4():
         return turn_message
 
     def controllo_vincitore(self, col, row):
-        print(col, row)
-        self.print_board()
         # Definisci le direzioni in cui controllare i gettoni consecutivi.
         directions = [(0, 1),  # verticale
                       (1, 0),  # orizzontale
@@ -86,12 +84,5 @@ class Connect4():
             return "Invalid column"
         return self.insert(col)
 
-    # def print_board(self):
-    #     """
-    #     Stampa lo stato attuale della griglia di gioco, riga per riga
-    #     """
-    #     for row in range(self.rows):
-    #         print(' '.join(self.matrice[col][row] for col in range(self.cols)))
-    #     print()
 
 
